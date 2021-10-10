@@ -40,8 +40,8 @@ function Main(props) {
       <section className="profile">
 
         <div className="profile__avatar">
+        <img className="avatar" src={userAvatar} alt="Аватарка" />
           <button onClick={onEditAvatar} type="button" className="button-ava"></button>
-          <img className="avatar" src={userAvatar} alt="Аватарка" />
         </div>
 
         <div className="profile-info">
