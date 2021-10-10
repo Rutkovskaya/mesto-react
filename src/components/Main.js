@@ -33,7 +33,7 @@ function Main(props) {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <main className="page">
@@ -55,8 +55,8 @@ function Main(props) {
       </section>
 
       <section className="photo-grid">
-        {cards.map((card, i) => (
-          <Card key={i} card={card} onCardClick={props.onCardClick} />
+        {cards.map((card) => (
+          <Card key={card._id} card={card} onCardClick={props.onCardClick} />
         ))}
       </section>
 

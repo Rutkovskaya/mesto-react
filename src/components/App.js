@@ -11,7 +11,7 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isImagePopupOpen, setImagePopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState(false);
+  const [selectedCard, setSelectedCard] = React.useState({ link: '', name: '' });
 
 
   const handleEditAvatarClick = () => {
@@ -36,6 +36,7 @@ function App() {
     setIsAddPlacePopupOpen(false);
     setIsEditAvatarPopupOpen(false);
     setImagePopupOpen(false);
+    setSelectedCard({ name: '', link: '' })
   };
 
   return (
@@ -46,9 +47,9 @@ function App() {
       <Main
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
-        onEditAvatar={handleEditAvatarClick} 
+        onEditAvatar={handleEditAvatarClick}
         onCardClick={handleClick}
-        />
+      />
       <Footer />
 
       <PopupWithForm
@@ -56,20 +57,32 @@ function App() {
         isOpen={isEditProfilePopupOpen}
         name="profile"
         title="Редактировать профиль"
+        buttonText="Сохранить"
       >
         <section className="form__section">
-          <input name="name" type="text" placeholder="Имя" value="Невведённое имя"
-            className="popup__text popup__text_type_name" required minlength="2" maxlength="40" />
+          <input
+            name="name"
+            type="text"
+            placeholder="Имя"
+            defaultValue="Невведённое имя"
+            className="popup__text popup__text_type_name"
+            required
+            minLength="2"
+            maxLength="40" />
           <span className="popup__text-error" id="name-error"></span>
         </section>
         <section className="form__section">
-          <input name="about" type="text" placeholder="Статус" value="Невведённый статус"
-            className="popup__text popup__text_type_status" required minlength="2" maxlength="40" />
+          <input
+            name="about"
+            type="text"
+            placeholder="Статус"
+            defaultValue="Невведённый статус"
+            className="popup__text popup__text_type_status"
+            required
+            minLength="2"
+            maxLength="40" />
           <span className="popup__text-error" id="status-error"></span>
         </section>
-        <button type="submit" className="popup__submit-btn">
-          Сохранить
-        </button>
       </PopupWithForm>
 
       <PopupWithForm
@@ -77,21 +90,28 @@ function App() {
         isOpen={isAddPlacePopupOpen}
         name="addcard"
         title="Новое место"
+        buttonText="Создать"
       >
         <section className="form__section">
-          <input name="name" type="text" placeholder="Название" value=""
-            className="popup__text popup__text_type_place" required minlength="2" maxlength="30" />
+          <input
+            name="name"
+            type="text"
+            placeholder="Название"
+            className="popup__text popup__text_type_place"
+            required
+            minLength="2"
+            maxLength="30" />
           <span className="popup__text-error" id="nameplace-error"></span>
         </section>
         <section className="form__section">
-          <input name="link" type="url" placeholder="Ссылка на картинку" value=""
-            className="popup__text popup__text_type_url" required />
+          <input
+            name="link"
+            type="url"
+            placeholder="Ссылка на картинку"
+            className="popup__text popup__text_type_url"
+            required />
           <span className="popup__text-error" id="url-error"></span>
         </section>
-        <button type="submit"
-          className="popup__submit-btn popup__submit-btn_addcard popup__submit-btn_inactive">
-          Создать
-        </button>
       </PopupWithForm>
 
       <PopupWithForm
@@ -99,29 +119,31 @@ function App() {
         isOpen={isEditAvatarPopupOpen}
         name="avatar"
         title="Обновить аватар"
+        buttonText="Сохранить"
       >
         <section className="form__section">
-          <input name="avatarLink" type="url" placeholder="Ссылка на новый аватар" value=""
-            className="popup__text popup__text_type_url" required />
+          <input
+            name="avatarLink"
+            type="url"
+            placeholder="Ссылка на новый аватар"
+            className="popup__text popup__text_type_url"
+            required />
           <span className="popup__text-error" id="avatarLink-error"> </span>
         </section>
-        <button type="submit"
-          className="popup__submit-btn popup__submit-btn_avatar popup__submit-btn_inactive">Сохранить
-        </button>
       </PopupWithForm>
 
       <PopupWithForm
         onClose={closeAllPopups}
         name="trash"
         title="Вы уверены?"
+        buttonText="Да"
       >
-        <button type="submit" className="popup__submit-btn popup__submit-btn_trash">Да</button>
       </PopupWithForm>
 
-      <ImagePopup 
-      onClose={closeAllPopups}
-      isOpen={isImagePopupOpen} 
-      card={selectedCard}
+      <ImagePopup
+        onClose={closeAllPopups}
+        isOpen={isImagePopupOpen}
+        card={selectedCard}
       />
 
     </div>

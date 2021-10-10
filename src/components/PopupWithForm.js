@@ -6,8 +6,10 @@ function PopupWithForm(props) {
             <div className="popup__container">
                 <button type="reset" onClick={props.onClose} aria-label="Закрыть окно" className="popup__close-btn"></button>
                 <h2 className="popup__heading">{props.title}</h2>
-                <form name="form" action="#" method="POST" className={`form form_type_${props.name}`} name={props.name} novalidate>
+                <form action="#" method="POST" className={`form form_type_${props.name}`} name={props.name} >
                     {props.children}
+
+                    <button type="submit" className="popup__submit-btn"> {props.buttonText} </button>
                 </form>
             </div>
         </div>
