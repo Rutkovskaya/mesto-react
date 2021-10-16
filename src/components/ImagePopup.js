@@ -1,7 +1,6 @@
 import React from 'react';
 
 function ImagePopup(props) {
-    console.log(props.card.name)
     return (
         <div className={`popup view-card ${props.card.link && 'popup_opened'}`}>
             <div className="view-card__container">
